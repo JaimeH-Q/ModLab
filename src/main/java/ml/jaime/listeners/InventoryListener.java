@@ -57,32 +57,6 @@ public class InventoryListener implements Listener {
     }
 
     @EventHandler
-    public void preventStaffItemDrag(InventoryDragEvent event){
-        event.getWhoClicked().sendMessage("me disparé");
-        if (!(event.getWhoClicked() instanceof Player player)) {
-            return;
-        }
-        if (!plugin.getStaffManager().isOnDuty(player)) {
-            return;
-        }
-        if (plugin.getConfigFile().isStaffItemsMove()) {
-            return;
-        }
-        player.sendMessage("hola 1");
-        ItemStack draggedItem = event.getOldCursor();
-        player.sendMessage("agarré " + draggedItem.getItemMeta().displayName());
-        List<DeserializedItem> allStaffItems = plugin.getItemsFile().getAllStaffItems();
-        for (DeserializedItem item : allStaffItems) {
-            if (item.getItemStack().displayName().equals(draggedItem.displayName())) {
-                player.sendMessage("dragged " + draggedItem.displayName());
-                event.setCancelled(true);
-                player.updateInventory();
-                return;
-            }
-        }
-    }
-
-    @EventHandler
     public void preventStaffItemMove(InventoryClickEvent event) {
         if (!(event.getWhoClicked() instanceof Player player)) {
             return;

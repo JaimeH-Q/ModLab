@@ -6,7 +6,7 @@
 
   <groupId>ml.jaime</groupId>
   <artifactId>ModLab</artifactId>
-  <version>1.0.0</version>
+  <version>0.5.0</version>
   <packaging>jar</packaging>
 
   <name>ModLab</name>
