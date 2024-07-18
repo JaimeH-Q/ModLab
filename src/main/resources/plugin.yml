@@ -2,5 +2,17 @@ name: ModLab
 version: '${project.version}'
 main: ml.jaime.ModLab
 api-version: '1.18'
-authors: [Jaime]
+author: Jaime
 description: Plugin for staff
+softdepend:
+  - Vault
+commands:
+  modlab:
+    aliases: ml
+    description: Main command
+  staff:
+    description: Staff mode command
+  freeze:
+    description: Freeze and unfreeze command
+    aliases:
+      - unfreeze

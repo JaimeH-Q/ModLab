@@ -9,9 +9,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import static ml.jaime.utils.MessageUtils.getColoredMessage;
 
-public class Staff implements CommandExecutor {
+public class StaffCommand implements CommandExecutor {
     private final ModLab plugin;
-    public Staff(ModLab plugin){
+    public StaffCommand(ModLab plugin){
         this.plugin = plugin;
     }
 

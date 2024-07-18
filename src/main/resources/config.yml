@@ -1,0 +1,39 @@
+freeze_leave_command: "ban %player% 15d Disconnect while frozen"
+staff_items_move: false # Can staff items be freely moved inside the inventory?
+
+
+items:
+  previous_page:
+    material: ARROW
+    custom_model_data: 100
+    display_name: "&eBack"
+  next_page:
+    material: ARROW
+    custom_model_data: 100
+    display_name: "&eNext"
+  teleport_menu:
+    material: ENDER_EYE
+    amount: 1
+    display_name: "&5Teleport Menu &8(Right Click)"
+    slot: 0
+    custom_model_data: 0
+    lore:
+      - "&7Use to see online players you can teleport to"
+  teleport_menu_player_item: # The head displayed in teleport menu
+    material: PLAYER_HEAD # This can't be changed
+    display_name: "%player_display_name%"
+    lore:
+      - "&8X: %x% Y: %y% Z: %z%"
+      - "&7> Click to teleport"
+  freeze_item:
+    material: BLUE_ICE
+    slot: 2
+    display_name: "&bFreeze &8(Right Click)"
+    lore:
+      - "&7> Right click on a player to freeze"
+
+
+menus:
+  teleport_menu:
+    title: "&5Teleport menu"
+

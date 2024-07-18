@@ -1,4 +1,4 @@
-package ml.jaime.files;
+package ml.jaime.model;
 
 import org.bukkit.inventory.ItemStack;
 

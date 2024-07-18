@@ -1,5 +1,5 @@
 package ml.jaime.model;
 
-public enum InventoryType {
+public enum InventorySection {
     TELEPORT_MENU,
 }
