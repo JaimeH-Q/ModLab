@@ -32,7 +32,7 @@ public class StaffItemsListener implements Listener {
     }
 
     @EventHandler
-    public void onTeleportMenuInteract(PlayerInteractEvent event) throws DataRequestException {
+    public void onTeleportMenuInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if(!plugin.getStaffManager().isOnDuty(player)){
             return;
@@ -108,18 +108,5 @@ public class StaffItemsListener implements Listener {
         event.setCancelled(!canStaffPlaceBlocks);
     }
 
-    @EventHandler
-    public void preventStaffItemMove(InventoryClickEvent event){
-        if(!plugin.getStaffManager().isOnDuty((Player) event.getWhoClicked())){return;}
-        if(plugin.getConfigFile().isStaffItemsMove()){return;}
-        ItemStack clickedItem = event.getCursor();
-        if(clickedItem == null){return;}
-        List<DeserializedItem> allStaffItems = plugin.getItemsFile().getAllStaffItems();
-        for(DeserializedItem item: allStaffItems){
-            if(item.getItemStack().displayName().equals(clickedItem.displayName())){
-                event.setCancelled(true);
-                return;
-            }
-        }
-    }
+
 }

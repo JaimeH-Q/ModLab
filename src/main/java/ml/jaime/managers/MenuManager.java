@@ -53,7 +53,7 @@ public class MenuManager {
     }
 
 
-    public void openTeleportMenu(InventoryPlayer inventoryPlayer) throws DataRequestException {
+    public void openTeleportMenu(InventoryPlayer inventoryPlayer) {
         inventoryPlayer.setInventorySection(InventorySection.TELEPORT_MENU);
         Player player = inventoryPlayer.getPlayer();
         DeserializedMenu deserializedMenu = plugin.getMenusFile().getTeleportMenu();
