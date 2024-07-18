@@ -3,6 +3,7 @@ package ml.jaime.managers;
 import ml.jaime.ModLab;
 import ml.jaime.model.DeserializedItem;
 import ml.jaime.files.ItemsFile;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -18,17 +19,27 @@ public class StaffManager {
         this.plugin = plugin;
     }
 
-    private final List<String> activeStaffs = new ArrayList<>();
-    private final Map<String, ItemStack[]> savedInventories = new HashMap<String, ItemStack[]>();
+    private final Map<Player, GameMode> activeStaffs = new HashMap<>();
+    private final Map<String, ItemStack[]> savedInventories = new HashMap<>();
 
     public Boolean alternateStaff(Player player){
-        String playerName = player.getName();
-        if(activeStaffs.contains(playerName)){
-            activeStaffs.remove(playerName);
+        GameMode staffGamemode = plugin.getConfigFile().getStaffGamemode();
+        if(activeStaffs.containsKey(player)){
+            GameMode previousGamemode = activeStaffs.get(player);
+            player.setGameMode(previousGamemode);
+            if(previousGamemode.equals(GameMode.SURVIVAL)){
+                player.setAllowFlight(false);
+            }
+            activeStaffs.remove(player);
             restoreSavedInventory(player);
             return false;
         }
-        activeStaffs.add(playerName);
+
+        activeStaffs.put(player, player.getGameMode());
+        if(!player.getGameMode().equals(GameMode.CREATIVE)){
+            player.setGameMode(staffGamemode);
+        }
+        if(staffGamemode.equals(GameMode.SURVIVAL)){player.setAllowFlight(true);}
         giveStaffItems(player);
         return true;
     }
@@ -62,8 +73,9 @@ public class StaffManager {
 
 
     public boolean isOnDuty(Player player){
-        return activeStaffs.contains(player.getName());
+        return activeStaffs.containsKey(player);
     }
+
 
 
 

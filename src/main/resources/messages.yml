@@ -1,8 +1,9 @@
 prefix: "&#8598fcModLab &8> &7"
 help_message:
-  - "&#a6b9ff· &7/modlab reload &8> &7Reloads plugin"
-  - "&#a6b9ff· &7/freeze &f<player> &8> &7Freezes players"
-  - "&#a6b9ff· &7/unfreeze &f<player> &8> &7Unfreezes players"
+  - "&#8598fc--     ModLab      --"
+  - "&#a6b9ff・ &7/modlab reload &8> &7Reloads plugin"
+  - "&#a6b9ff・ &f/freeze <player> &8> &7Freezes players"
+  - "&#a6b9ff・ &7/unfreeze <player> &8> &7Unfreezes players"
 player_only: "&c✘ &7Player only command."
 no_permission: "&c✘ &7No permission."
 player_not_found: "&c✘ &7Player %player% not found."

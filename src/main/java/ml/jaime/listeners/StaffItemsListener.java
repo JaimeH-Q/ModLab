@@ -6,17 +6,23 @@ import ml.jaime.ModLab;
 import ml.jaime.files.MessagesFile;
 import ml.jaime.managers.FreezeManager;
 import ml.jaime.managers.MenuManager;
+import ml.jaime.model.DeserializedItem;
 import ml.jaime.model.InventoryPlayer;
 import net.skinsrestorer.api.exception.DataRequestException;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
+
 import static ml.jaime.utils.MessageUtils.*;
 
 public class StaffItemsListener implements Listener {
@@ -64,8 +70,7 @@ public class StaffItemsListener implements Listener {
         if(!usedItem.getItemMeta().displayName().equals(freezeItem.getItemMeta().displayName())){
             return;
         }
-        if(!(event.getRightClicked() instanceof Player)){ return; }
-        Player targetPlayer = (Player) event.getRightClicked();
+        if(!(event.getRightClicked() instanceof Player targetPlayer)){ return; }
         MessagesFile messagesFile = plugin.getMessagesFile();
         String prefix = messagesFile.getPrefix();
         FreezeManager freezeManager = plugin.getFreezeManager();
@@ -90,6 +95,31 @@ public class StaffItemsListener implements Listener {
 
     @EventHandler
     public void preventStaffBlocksPlace(BlockPlaceEvent event){
+        if(!plugin.getStaffManager().isOnDuty(event.getPlayer())){return;}
+        // Staff items can never be placed
+        List<DeserializedItem> allStaffItems = plugin.getItemsFile().getAllStaffItems();
+        for(DeserializedItem item: allStaffItems){
+            if(item.getItemStack().displayName().equals(event.getItemInHand().displayName())){
+                event.setCancelled(true);
+                return;
+            }
+        }
+        boolean canStaffPlaceBlocks = plugin.getConfigFile().isStaffBlockPlace();
+        event.setCancelled(!canStaffPlaceBlocks);
+    }
 
+    @EventHandler
+    public void preventStaffItemMove(InventoryClickEvent event){
+        if(!plugin.getStaffManager().isOnDuty((Player) event.getWhoClicked())){return;}
+        if(plugin.getConfigFile().isStaffItemsMove()){return;}
+        ItemStack clickedItem = event.getCursor();
+        if(clickedItem == null){return;}
+        List<DeserializedItem> allStaffItems = plugin.getItemsFile().getAllStaffItems();
+        for(DeserializedItem item: allStaffItems){
+            if(item.getItemStack().displayName().equals(clickedItem.displayName())){
+                event.setCancelled(true);
+                return;
+            }
+        }
     }
 }

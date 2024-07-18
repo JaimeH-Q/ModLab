@@ -1,3 +1,5 @@
+staff_gamemode: SURVIVAL # SURVIVAL | CREATIVE
+staff_block_place: true # Can staff place blocks while on duty?
 freeze_leave_command: "ban %player% 15d Disconnect while frozen"
 staff_items_move: false # Can staff items be freely moved inside the inventory?
 

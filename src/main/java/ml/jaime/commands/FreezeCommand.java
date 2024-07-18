@@ -21,12 +21,12 @@ public class FreezeCommand implements CommandExecutor {
     public boolean  onCommand(CommandSender sender, Command command, String alias, String[] args){
         MessagesFile messagesFile = plugin.getMessagesFile();
         String prefix = messagesFile.getPrefix();
-        if(args.length == 0){
-            sender.sendMessage(getColoredMessage(prefix + messagesFile.getBadUsageFreeze()));
-            return true;
-        }
         if(!sender.hasPermission("modlab.freeze")){
             sender.sendMessage(getColoredMessage(prefix + messagesFile.getNoPermissionMessage()));
+            return true;
+        }
+        if(args.length == 0){
+            sender.sendMessage(getColoredMessage(prefix + messagesFile.getBadUsageFreeze()));
             return true;
         }
         Player targetPlayer = Bukkit.getPlayer(args[0]);

@@ -89,4 +89,11 @@ public class ItemsFile{
     public DeserializedItem getPreviousPageItem() {
         return previousPageItem;
     }
+
+    public List<DeserializedItem> getAllStaffItems(){
+        List<DeserializedItem> items = new ArrayList<>();
+        items.add(teleportMenu);
+        items.add(freezeItem);
+        return items;
+    }
 }
