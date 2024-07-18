@@ -1,0 +1,6 @@
+name: ModLab
+version: '${project.version}'
+main: ml.jaime.ModLab
+api-version: '1.18'
+authors: [Jaime]
+description: Plugin for staff
