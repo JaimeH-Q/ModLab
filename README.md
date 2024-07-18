@@ -7,7 +7,7 @@ Hello! Hope you enjoy Modlab :)
 * BanGUI ⚙️
 * XrayGUI⚙️
 * Inventory inspect ⚙️
-* Reports (maybe) 📝
+* Reports ⚙️
 
 ⚠️ You need at least Paper _not spigot_ 1.18.2 (And so Java 17)
 
